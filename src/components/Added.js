@@ -9,7 +9,7 @@ function Added({message}) {
         <h1>{message}</h1>
         </div>
         <div className='addedButtons'>
-            <Link to='/' className='btn btn-lg btn-success'>Olhar tabela</Link>
+            <Link to='/' className='btn btn-lg btn-success'>Listar veículos</Link>
         </div>
     </div>
   )
