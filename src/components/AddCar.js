@@ -49,7 +49,7 @@ function AddCar() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    axios.post('/carros', values).then((res) => {
+    axios.post('https://ws-back-end.herokuapp.com/carros', values).then((res) => {
       setMessage(res.data.message)
     })
   }

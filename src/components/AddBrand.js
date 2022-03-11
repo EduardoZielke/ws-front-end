@@ -20,7 +20,7 @@ function AddBrand() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    axios.post('/marcas', {marca_nome: value}).then(res=> {
+    axios.post('https://ws-back-end.herokuapp.com/marcas', {marca_nome: value}).then(res=> {
       setMessage(res.data.message)
     })
   } 
