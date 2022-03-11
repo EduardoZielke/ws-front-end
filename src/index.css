@@ -37,7 +37,6 @@ header label {
   margin: 0;
   max-width: 250px;
   font-size: 1rem;
-  /* background-color: red; */
 }
 
 label select {
@@ -50,10 +49,10 @@ label select {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 290px;
-  margin-left: 10px;
+  max-width: 300px;
 }
 
 .addButtons .btnAdd {
   min-width: 50px;
+  margin-left: 10px;
 }
