@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import renderBrands from '../utils/renderBrands'
 import {Link, useLocation} from 'react-router-dom'
 
@@ -14,7 +14,7 @@ function Header() {
   }
 
   useEffect(()=>{
-    axios.get('https://ws-back-end.herokuapp.com/marcas').then(res => {
+    axios.get('/marcas').then(res => {
       setMarcas(res.data)
     })
   }, [location.pathname])
@@ -31,7 +31,7 @@ function Header() {
           </select>
         </label>
       ) : (
-        <Link to='/' className='btn btn-info'>Pagina inicial</Link>
+        <Link to='/' className='btn btn-info'>Página inicial</Link>
       )}
         <div className='addButtons'>
             <Link to='/adicionar/carro' 
