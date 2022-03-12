@@ -52,7 +52,7 @@ function AddCar() {
   function handleSubmit(e) {
     e.preventDefault()
     setReqApi(true)
-    axios.post('/carros', values).then((res) => {
+    axios.post('https://ws-back-end.herokuapp.com/carros', values).then((res) => {
       setMessage(res.data.message)
     })
   }
