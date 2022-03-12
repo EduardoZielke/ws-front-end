@@ -11,11 +11,9 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    setTimeout(()=>{
-      axios.get('/carros').then(res => {
-        setCarros(res.data)
-      })
-    }, 1000)
+    axios.get('https://ws-front-end.herokuapp.com/carros').then(res => {
+      setCarros(res.data)
+    })
   }, [])
 
   useEffect(()=>{
