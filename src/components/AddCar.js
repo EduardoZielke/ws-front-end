@@ -114,8 +114,6 @@ function AddCar() {
         </div>
         <div className='button'>
           {pronto ? (
-            // <input  className='btn btn-success' type='submit'
-            // onClick={handleSubmit} value='Adicionar carro'/>
             <button className='btn btn-success' onClick={handleSubmit}>
               {reqApi ? (
                 <Loading loadingPx='30' borderPx='3'/>
