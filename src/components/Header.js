@@ -14,7 +14,7 @@ function Header() {
   }
 
   useEffect(()=>{
-    axios.get('/marcas').then(res => {
+    axios.get('https://ws-back-end.herokuapp.com/marcas').then(res => {
       setMarcas(res.data)
     })
   }, [location.pathname])
