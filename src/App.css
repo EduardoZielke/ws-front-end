@@ -93,7 +93,8 @@
   margin-top: 45px;
 }
 
-.button input {
+.button input,
+.button button {
   height: 100%;
   width: 100%;
 }

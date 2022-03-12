@@ -2,8 +2,8 @@ import {useEffect, useState} from 'react'
 import './App.css';
 import axios from 'axios'
 import Table from './components/Table';
-import {useSelector} from 'react-redux'
-import {useDispatch} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import Loading from './components/Loading/index'
 
 function App() {
   const [carros, setCarros] = useState(null)
@@ -11,9 +11,11 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    axios.get('https://ws-back-end.herokuapp.com/carros').then(res => {
-      setCarros(res.data)
-    })
+    setTimeout(()=>{
+      axios.get('/carros').then(res => {
+        setCarros(res.data)
+      })
+    }, 1000)
   }, [])
 
   useEffect(()=>{
@@ -23,7 +25,7 @@ function App() {
   return (carros && pesquisaState ?
     <div className="App container">
       <Table carros={carros} pesquisa={pesquisaState}/>
-    </div> : null
+    </div> : <Loading wrapperPx='500' loadingPx='50' borderPx='5'/>
   );
 }
 

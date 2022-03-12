@@ -1,11 +1,13 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import Added from './Added'
+import Loading from './Loading'
 
 function AddBrand() {
   const [pronto, setPronto] = useState(false)
   const [value, setValue] = useState()
   const [message, setMessage] = useState()
+  const [reqApi, setReqApi] = useState(false)
 
   function handleChange() {
     let marca_nome = document.getElementById('marca_nome').value
@@ -20,7 +22,8 @@ function AddBrand() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    axios.post('https://ws-back-end.herokuapp.com/marcas', {marca_nome: value}).then(res=> {
+    setReqApi(true)
+    axios.post('/marcas', {marca_nome: value}).then(res=> {
       setMessage(res.data.message)
     })
   } 
@@ -36,8 +39,14 @@ function AddBrand() {
         </div>
         <div className='button'>
           {pronto ? (
-            <input type='submit' className='btn btn-success' 
-            onClick={handleSubmit} value='Adicionar marca'/>
+            <button type='submit' className='btn btn-success' 
+            onClick={handleSubmit}>
+              {reqApi ? (
+                <Loading loadingPx='30' borderPx='3'/>
+              ) : (
+                'Adicionar marca'
+              )}
+              </button>
           ) : (
             <input type='submit' className='btn btn-secondary' value='Adicionar marca'/>
           )}

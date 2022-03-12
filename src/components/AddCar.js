@@ -2,15 +2,17 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import renderBrands from '../utils/renderBrands'
 import Added from './Added'
+import Loading from './Loading'
 
 function AddCar() {
   const [marcas, setMarcas] = useState(null)
   const [pronto, setPronto] = useState(false)
+  const [reqApi, setReqApi] = useState(false)
   const [values, setValues] = useState()
   const [message, setMessage] = useState()
 
   useEffect(()=>{
-    axios.get('https://ws-back-end.herokuapp.com/marcas').then(res => {
+    axios.get('/marcas').then(res => {
       setMarcas(res.data)
     })
   }, [])
@@ -49,7 +51,8 @@ function AddCar() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    axios.post('https://ws-back-end.herokuapp.com/carros', values).then((res) => {
+    setReqApi(true)
+    axios.post('/carros', values).then((res) => {
       setMessage(res.data.message)
     })
   }
@@ -111,8 +114,15 @@ function AddCar() {
         </div>
         <div className='button'>
           {pronto ? (
-            <input  className='btn btn-success' type='submit'
-            onClick={handleSubmit} value='Adicionar carro'/>
+            // <input  className='btn btn-success' type='submit'
+            // onClick={handleSubmit} value='Adicionar carro'/>
+            <button className='btn btn-success' onClick={handleSubmit}>
+              {reqApi ? (
+                <Loading loadingPx='30' borderPx='3'/>
+              ) : (
+                'Adicionar carro'
+              )}
+            </button>
           ) : (
             <input  className='btn btn-secondary' type='button' 
             onClick={(e)=>{e.preventDefault()}} value='Preencha todos os campos'/>
